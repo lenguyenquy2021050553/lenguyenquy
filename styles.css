@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Căn giữa toàn bộ body */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100vh; /* Chiều cao của body bằng chiều cao màn hình */
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly; /* Phân bố các nút đều nhau */
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+#tutorial-modal {
+    display: none; /* Ẩn modal theo mặc định */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 518px;
+    max-height: 80%; /* Giới hạn chiều cao tối đa */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto; /* Thêm khả năng cuộn */
+}
+
+button {
+    padding: 10px 20px; /* Tăng kích thước nút */
+    background-color: blue; /* Nền màu xanh */
+    color: white; /* Chữ màu trắng */
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 18px; /* Tăng kích thước chữ */
+    border-radius: 5px; /* Bo góc nút */
+    transition: background-color 0.3s; /* Hiệu ứng hover */
+    margin: 0 10px; /* Khoảng cách giữa các nút */
+}
+
+button:hover {
+    background-color: darkblue; /* Nền đổi thành màu xanh đậm khi hover */
+}
+
+.fixed-buttons {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    flex-direction: row; /* Xếp dọc các nút */
+    gap: 10px;
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Làm nút tròn */
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s;
+}
+
+/* CSS cho modal hướng dẫn */
+#tutorial-modal,#theory-modal {
+    display: none;
+    position: fixed;
+    top: 70px; /* Đặt khoảng cách từ phía trên là 0 */
+    right: 0; /* Đặt khoảng cách từ phía bên phải là 0 */
+    width: 350px;
+    height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
+    background-color: Lime;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto;
+    transform: none; /* Đảm bảo không có transform căn giữa */
+    left: auto; /* Loại bỏ mọi căn chỉnh từ trái */
+}
+
+
+#tutorial-modal h2,#theory-modal h2 {
+    font-size: 24px;
+}
+
+#tutorial-modal p, #theory-modal p {
+    font-size: 16px;
+}
+
+#close-tutorial-modal,#close-theory-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: rgb(28, 104, 217);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* CSS cho nền mờ */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Tạo kiểu cho phần tử chứa icon và văn bản */
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+/* Căn chỉnh kích thước của icon */
+.icon-text img {
+    width: 20px; /* Đặt kích thước cho icon */
+    height: auto;
+    margin-right: 8px; /* Khoảng cách giữa icon và văn bản */
+}

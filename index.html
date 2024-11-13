@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô phỏng</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Bao bọc các nút trong một container -->
+<div class="container">
+    <button id="switch-btn1">Mô phỏng cây</button>
+    <button id="switch-btn2">Mô phỏng rễ</button>
+    <button id="switch-btn3">Mô phỏng thân</button>
+    <button id="switch-btn4">Mô phỏng lá</button>
+    <button id="toggleWaterPath" >Toggle Water Path</button>
+    <button id="toggleSugarPath" >Toggle Sugar Path</button>
+</div>
+
+<!-- Nút cố định ở góc phải trên -->
+<div class="fixed-buttons">
+    <button class="btn help" title="Hướng dẫn sử dụng" onclick="openTutorialModal()">
+        <i class="fa fa-question"></i>
+    </button>
+    <button class="btn theory" title="Lý thuyết" onclick="openTheoryModal()">
+        <i class="fa fa-file"></i>
+    </button>
+    <button class="btn reset" title="làm mới" onclick="resetPage()">
+        <i class="fa fa-refresh fa-spin"></i>
+    </button>
+</div>
+
+<!-- Modal hướng dẫn sử dụng -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeTutorialModal()"></div>
+<div id="tutorial-modal">
+    <h2>Hướng dẫn sử dụng</h2>
+
+    <div class="icon-text">
+        <img src="./assets/left-click.png" alt="Left Click Icon">
+        <p>Thay đổi góc nhìn: Di chuyển chuột trái để thay đổi góc nhìn của mô hình 3D.</p>
+    </div>
+
+    <div class="icon-text">
+        <img src="./assets/right-click.png" alt="Right Click Icon">
+        <p>Di chuyển: Di chuyển chuột phải để di chuyển mô hình 3D.</p>
+    </div>
+
+    <div class="icon-text">
+        <img src="./assets/scroll.png" alt="Scroll Icon">
+        <p>Phóng to/Thu nhỏ: Cuộn chuột giữa để phóng to , thu nhỏ mô hình 3D.</p>
+    </div>
+
+    
+    <button id="close-tutorial-modal" onclick="closeTutorialModal()">
+        <i class="fa fa-times"></i>
+    </button>
+
+    <button id="close-theory-modal" onclick="closeTutorialModal()">
+        <i class="fa fa-times"></i>
+    </button>
+</div>
+
+<!-- Modal Lý thuyết -->
+<div class="modal-overlay" id="theory-overlay" onclick="closeTheoryModal()"></div>
+<div id="theory-modal">
+    <h2>Lý thuyết trao đổi nước ở thực vật</h2>
+    <p>Trao đổi nước diễn ra trong suốt quá trình sống của thực vật, bao gồm 3 quá trình: quá trình hấp thụ nước ở rễ, quá trình vận chuyển nước ở thân, quá trình thoát hơi nước ở lá. Trong điều kiện bình thường, các quá trình này hoạt động nhịp nhàng, liên tục, liên hệ khăng khít với nhau, tạo nên trạng thái cân bằng nước, cần thiết cho sự sống của thực vật.</p>
+    <h2>I. VAI TRÒ CỦA NƯỚC VÀ NHU CẦU NƯỚC ĐỐI VỚI THỰC VẬT</h2>
+    <h3>1. Các dạng nước trong cây và vai trò của nước</h3>
+    <p>Nước trong cây có hai dạng chính: nước tự do và nước liên kết.</p>
+    <ul>
+        <li> Nước tự do: là dạng nước chứa trong các thành phần của tế bào, trong các khoảng gian bào, trong các mạch dẫn,... không bị hút bởi các phân tử tích điện hay dạng liên kết hoá học. Dạng nước này vẫn giữ được tính chất vật lí, hoá học, sinh học bình thường của nước và có vai trò rất quan trọng đối với cây: làm dung môi, làm giảm nhiệt độ của cơ thể khi thoát hơi nước, tham gia vào một số quá trình trao đổi chất, đảm bảo độ nhớt của chất nguyên sinh, giúp cho quá trình trao đổi chất diễn ra bình thường trong cơ thể.</li>
+        <li>Nước liên kết: là dạng nước bị các phân tử tích điện hút bởi một lực nhất định hoặc trong các liên kết hoá học ở các thành phần của tế bào. Dạng nước liên kết mặc dù không giữ được các đặc tính vật lí, hoá học, sinh học của nước nhưng lại có vai trò đảm bảo độ bền vững của hệ thống keo trong chất nguyên sinh của tế bào. Vì vậy, hàm lượng nước liên kết trong cây là một chỉ tiêu đánh giá tính chịu nóng và chịu hạn của cây.</li>
+    </ul>
+    <h3>2. Nhu cầu nước đối với thực vật</h3>
+    <p>Cây cần một lượng nước rất lớn trong suốt đời sống của nó. Một cây ngô đã tiêu thụ 200 kg nước và một hecta ngô trong suốt thời kì sinh trưởng đã cần tới 8 000 tấn nước. Để tổng hợp 1 g chất khô, các cây khác nhau cần từ 200 g đến 600 g nước.</p>
+    <h2>II. QUÁ TRÌNH HẤP THỤ NƯỚC Ở RỄ</h2>
+    <ul>
+        <li>Thực vật thuỷ sinh hấp thụ nước từ môi trường xung quanh qua bề mặt các tế bào biểu bì của cây.</li>
+        <li>Thực vật trên cạn hấp thụ nước dạng lỏng từ đất qua bề mặt tế bào biểu bì của rễ, trong đó chủ yếu qua các tế bào biểu bì đã phát triển thành lông hút.</li>
+    </ul>
+    <h3>1. Đặc điểm của bộ rễ liên quan đến quá trình hấp thụ nước.</h3>
+    <p>Bộ rễ do nhiều loại rễ tạo thành. Để hấp thụ nước và các chất khoáng từ đất, bộ rễ phát triển rất mạnh về số lượng, kích thước và diện tích. Ngoài ra, trên mỗi bề mặt rễ lại có tới hàng trăm lông hút, hình thành từ tế bào biểu bì rễ. Các tế bào này có đặc điểm cấu tạo và sinh lí phù hợp với chức năng nhận nước và các chất khoáng từ đất như:</p>
+    <ul>
+        <li>Thành tế bào mỏng, không thấm cutin.</li>
+        <li>Chỉ có một không bào trung tâm lớn.</li>
+        <li>Áp suất thẩm thấu rất cao do hoạt động hô hấp của rễ mạnh.Vì vậy, các dạng nước tự do và dạng nước liên kết không chặt có trong đất được lông hút hấp thụ một cách dễ dàng nhờ sự chênh lệch về áp suất thẩm thấu giữa tế bào lông hút và dung dịch đất.</li>
+    </ul>
+    <h3>2. Con đường hấp thụ nước ở rễ</h3>
+    <p>Nước được hấp thụ liên tục từ đất => tế bào lông hút theo cơ chế thụ động (thẩm thấu): từ môi trường nhược trương (ít ion khoáng, nhiều nước) sang môi trường ưu trương (nhiều ion khoáng, ít nước) nhờ sự chênh lệch áp suất thẩm thấu. Dịch của tế bào rễ là ưu trương so với dung dịch đất là do 2 nguyên nhân:</p>
+    <ul>
+        <li>Quá trình thoát hơi nước ở lá đóng vai trò như cái bơm hút, hút nước lên phía trên, làm giảm lượng nước trong tế bào lông hút.</li>
+        <li>Nồng độ các chất tan cao do được sinh ra trong quá trình chuyển hoá vật chất trong cây.Các ion khoáng xâm nhập vào tế bào rễ cây theo 2 cơ chế là cơ chế thụ động và cơ chế chủ động.</li>
+    </ul>
+    <p>Sự xâm nhập của nước và các ion khoáng từ đất vào tế bào lông hút, rồi xuyên qua các tế bào vỏ rễ vào mạch gỗ của rễ theo hai con đường là con đường gian bào và con đường tế bào chất.</p>
+    <h3>3. Cơ chế di chuyển của nước từ đất vào rễ, lên thân</h3>
+    <p>Nước từ đất vào lông hút rồi vào mạch gỗ của rễ theo cơ chế thẩm thấu, tức là từ nơi có áp suất thẩm thấu thấp đến nơi có áp suất thẩm thấu cao.</p>
+    <p>Nước bị đẩy từ rễ lên thân do một lực đẩy gọi là áp suất rễ (có thể quan sát qua 2 hiện tượng: rỉ nhựa và ứ giọt).</p>
+    <ul>
+        <li>Cắt cây thân thảo đến gần gốc, sau vài phút sẽ thấy những giọt nhựa rỉ ra từ phần thân cây bị cắt. Đó chính là những giọt nhựa do rễ đẩy từ mạch gỗ ở rễ lên mạch gỗ ở thân.</li>
+        <li>Úp cây trong chuông thuỷ tinh kín, sau một đêm, ta sẽ thấy các giọt nước ứ ra ở mép lá. Như vậy, không khí trong chuông thuỷ tinh đã bão hoà hơi nước, nước bị đẩy từ mạch gỗ của rễ lên lá không thoát được thành hơi qua khí khổng đã ứ thành các giọt ở mép lá.</li>
+    </ul>
+    <h2>III. QUÁ TRÌNH VẬN CHUYỂN NƯỚC Ở THÂN</h2>
+    <h3>1. Đặc điểm của con đường vận chuyển nước ở thân</h3>
+    <p>Nước và các chất khoáng hoà tan trong nước được vận chuyển theo một chiều từ rễ lên lá.</p>
+    <p>Chiều dài của cột nước phụ thuộc vào chiều dài của thân cây.</p>
+    <h3>2. Con đường vận chuyển nước ở thân</h3>
+    <p>Nước được vận chuyển ở thân chủ yếu bằng con đường qua mạch gỗ từ rễ lên lá. Tuy nhiên, nước cũng có thể vận chuyển theo chiều từ trên xuống ở mạch rây hoặc vận chuyển ngang từ mạch gỗ sang mạch rây hoặc ngược lại.</p>
+    <h3>3. Cơ chế đảm bảo sự vận chuyển nước ở thân</h3>
+    <p>Quá trình vận chuyển nước ở thân thực hiện được do sự phối hợp giữa:</p>
+    <ul>
+        <li>Lực hút của lá (do quá trình thoát hơi nước), là lực đóng vai trò chính.</li>
+        <li>Lực đẩy của rễ (do quá trình hấp thụ nước).</li>
+        <li>Lực trung gian (lực liên kết giữa các phân tử nước và lực bám giữa các phân tử nước với thành mạch dẫn tạo thành dòng nước liên tục).</li>
+    </ul>
+    <h2>IV. THOÁT HƠI NƯỚC Ở LÁ</h2>
+    <h3>1. Ý nghĩa của sự thoát hơi nước</h3>
+    <p>Cứ trong 1 000 g nước cây hấp thụ qua rễ thì khoảng 990 g nước thoát ra ngoài không khí qua lá dưới dạng hơi, qua quá trình thoát hơi nước.
+        Macximôp – Nhà sinh lí thực vật người Nga đã viết: “Thoát hơi nước là là tai hoạ tất yếu của cây”. “Tai họa” ở đây là muốn nói trong suốt quá trình sinh trưởng và phát triển, thực vật phải mất đi một lượng nước quá lớn và như vậy nó phải hấp thụ một lượng nước lớn hơn lượng nước mất đi. Đó là một điều không dễ dàng gì trong điều kiện môi trường luôn luôn thay đổi.
+    </p>
+    <p>Còn “tất yếu” là muốn nói thực vật cần phải thoát một lượng nước lớn như thế vì có thoát hơi nước mới lấy được nước. Sự thoát hơi nước ở lá đã tạo ra một sức hút nước, một sự chênh lệch về thế nước theo chiều hướng giảm dần từ rễ đến lá và nước có thể chuyển từ rễ lên lá một cách dễ dàng. Người ta gọi đó là động lực trên của con đường vận chuyển nước. Mặt khác, khi thoát một lượng nước lớn như vậy, nhiệt độ của bề mặt lá giảm xuống, chỉ cao hơn nhiệt độ trong bóng râm một chút. Ngay ở sa mạc, nhiệt độ của lá nơi nắng chói chang cũng chỉ cao hơn trong bóng râm. Tuy nhiên, lí do quan trọng nhất là khi thoát hơi nước thì khí khổng mở và đồng thời hơi nước thoát ra, dòng khí sẽ đi từ không khí vào lá, đảm bảo cho quá trình quang hợp thực hiện bình thường.</p>
+    <h3>2. Con đường thoát hơi nước ở lá</h3>
+    <p>a. Con đường thoát hơi nước qua khí khổng có đặc điểm:</p>
+    <ul>
+        <li>Vận tốc lớn.</li>
+        <li>Được điều chỉnh bằng việc đóng, mở khí khổng.</li>
+    </ul>
+    <p>b. Con đường thoát hơi nước qua bề mặt lá (qua lớp cutin) có đặc điểm:</p>
+    <ul>
+        <li>Vận tốc nhỏ.</li>
+        <li>Không được điều chỉnh.</li>
+    </ul>
+    <h3>3. Cơ chế điều chỉnh thoát hơi nước</h3>
+    <p>Nước thoát ra khỏi lá chủ yếu qua khí khổng, vì vậy cơ chế điều chỉnh quá trình thoát hơi nước chính là cơ chế điều chỉnh sự đóng, mở khí khổng.
+        Quan sát sự đóng, mở khí khổng, ta thấy rằng: Nếu chuyển cây từ trong tối ra ngoài sáng thì khí khổng mở và ngược lại. Như vậy, rõ ràng ánh sáng là nguyên nhân gây ra việc đóng, mở khí khổng. Đó chính là sự mở chủ động của khí khổng ngoài ánh sáng. Tuy nhiên, một số cây khi thiếu nước (bị hạn) khí khổng đóng lại để tránh sự thoát hơi nước mặc dù cây vẫn ở ngoài sáng. Đó là sự đóng chủ động của khí khổng khi thiếu nước. Trong trường hợp này, hàm lượng acid abscisic (AAB) tăng lên là nguyên nhân gây ra việc đóng khí khổng. Ngoài ra, có một số cây sống trong điều kiện thiếu nước (cây xương rồng, các cây mọng nước ở sa mạc) khí khổng đóng hoàn toàn vào ban ngày, chỉ khi Mặt Trời lặn, khí khổng mới mở nên tiết kiệm được nước đến mức tối đa.
+        Như vậy, sự trao đổi nước ở thực vật được thực hiện bởi quá trình hấp thụ nước từ đất vào rễ và đẩy nước từ rễ lên thân, quá trình thoát hơi nước ở lá tạo lực hút nước từ thân lên lá. Rõ ràng là sự phối hợp hoạt động của các quá trình này đã đưa được các phân tử nước từ đất vào rễ cây và sau đó nước được đưa lên tận ngọn cây mặc dù cây có thể cao từ vài ba mét đến hàng trăm mét.
+    </p>
+    <h2>V - ẢNH HƯỞNG CỦA ĐIỀU KIỆN MÔI TRƯỜNG ĐẾN QUÁ TRÌNH TRAO ĐỔI NƯỚC</h2>
+    <h3>1. Ánh sáng</h3>
+    <p>Ánh sáng ảnh hưởng chủ yếu đến quá trình thoát hơi nước ở lá với vai trò là tác nhân gây mở khí khổng.</p>
+    <h3>2. Nhiệt độ</h3>
+    <p>Nhiệt độ ảnh hưởng đến cả hai quá trình: hấp thụ nước ở rễ và thoát hơi nước ở lá. Nhiệt độ đất ảnh hưởng đến sự sinh trưởng và hoạt động hô hấp của rễ. Rễ nhiều và hô hấp tốt sẽ hấp thụ được nhiều nước và các chất khoáng hoà tan từ đất.
+        Nhiệt độ không khí ảnh hưởng đến độ ẩm của không khí và do đó ảnh hưởng đến quá trình thoát hơi nước của lá.</p>
+    <h3>3. Độ ẩm đất và không khí</h3>
+    <p>Độ ẩm đất liên quan chặt chẽ đến quá trình hấp thụ nước theo chiều thuận (độ ẩm đất càng cao, sự hấp thụ nước càng mạnh). Độ ẩm không khí liên quan đến quá trình thoát hơi nước ở lá theo chiều nghịch (độ ẩm không khí càng thấp, sự thoát hơi nước càng mạnh).</p>
+    <h3>4. Dinh dưỡng khoáng.</h3>
+    <p>Hàm lượng các chất dinh dưỡng trong đất ảnh hưởng đến sự sinh trưởng của hệ rễ và áp suất thẩm thấu của dung dịch đất, do đó ảnh hưởng nhiều đến quá trình hấp thụ nước và các chất khoáng của hệ rễ. Ngay sau khi bón phân, cây sẽ khó hấp thụ nước vì áp suất thẩm thấu của đất tăng. Sau đó, khi các chất khoáng vào rễ, cây lại hút nước một cách dễ dàng. Mối quan hệ này thấy rất rõ ở các cây vùng mặn.</p>
+    <h2>VI – CƠ SỞ KHOA HỌC CỦA VIỆC TƯỚI NƯỚC HỢP LÍ CHO CÂY TRỒNG</h2>
+    <h3>1. Cân bằng nước của cây trồng</h3>
+    <p>Cân bằng nước được hiểu như là sự tương quan giữa quá trình hấp thụ nước và quá trình thoát hơi nước của cây. Khi lượng nước lấy vào ít hơn lượng nước mất đi thì cây ở trạng thái thiếu nước. Ở trạng thái này, cây bị hạn và cần phải tưới nước cho cây trồng.</p>
+    <h3>2. Tưới nước hợp lí cho cây trồng</h3>
+    <p>Để có một chế độ nước thích hợp, tạo điều kiện tốt cho cây sinh trưởng và phát triển nhằm đạt năng suất cao trong sản xuất, cần phải thực hiện việc tưới nước một cách hợp lí cho cây. Vậy thế nào là tưới nước hợp lí? Đó là việc thực hiện cùng một lúc ba vấn đề sau:</p>
+    <ul>
+        <li>Khi nào cần tưới nước?</li>
+        <p>Căn cứ vào các chỉ tiêu sinh lí về chế độ nước của cây trồng như: sức hút nước của lá, nồng độ hay áp suất thẩm thấu của dịch tế bào, trạng thái của khí khổng, cường độ hô hấp của lá… để xác định thời điểm cần tưới nước.</p>
+        <li>Lượng nước cần tưới là bao nhiêu?</li>
+        <p>Lượng nước tưới phải căn cứ vào nhu cầu nước của từng loại cây, tính chất vật lí, hoá học của từng loại đất và các điều kiện môi trường cụ thể.</p>
+        <li>Cách tưới như thế nào?</li>
+        <p>Cách tưới phụ thuộc vào các nhóm cây trồng khác nhau. Ví dụ: Cây lúa nước có thể tưới ngập nước, đối với các cây trồng cạn thì cần tưới đạt 80% độ bão hoà nước của đất. Cách tưới nước còn phụ thuộc vào các loại đất. Ví dụ: Đối với đất cát phải tưới nhiều lần, đối với đất mặn phải tưới nhiều nước hơn nhu cầu nước của cây…</p>
+    </ul>
+    <p>Ý nghĩa của quá trình thoát hơi nước: Tạo lực hút nước, điều hoà nhiệt độ bề mặt thoát hơi nước, tạo điều kiện cho CO2 từ không khí vào lá để tham gia vào quá trình quang hợp.
+        Tưới nước hợp lí cho cây trồng là một biện pháp khoa học dựa trên các chỉ tiêu sinh lí về trao đổi nước của cây trồng để trả lời các câu hỏi: khi nào tưới, tưới bao nhiêu và tưới bằng cách nào?</p>
+    <h2>VII - THOÁT HƠI NƯỚC QUA KHÍ KHỔNG</h2>
+    <p>Mặc dù diện tích lỗ khí của toàn bộ khí khổng chỉ gần bằng 1% diện tích của lá, nhưng lượng nước thoát ra khỏi khí khổng lại lớn hơn lượng nước thoát qua bề mặt lá nhiều lần. Tại sao? Cơ sở vật lí của quá trình bốc hơi nước đã chứng minh rằng: các phân tử nước bốc hơi và thoát vào không khí ở mép chậu nước dễ dàng hơn nhiều so với các phân tử nước bốc hơi từ giữa chậu nước. Như vậy, vận tốc thoát hơi nước không chỉ phụ thuộc vào diện tích thoát hơi mà còn phụ thuộc chặt chẽ vào chu vi của các diện tích đó. Rõ ràng là hàng trăm khí khổng trên một lá sẽ có tổng chu vi lớn hơn rất nhiều so với chu vi lá và đó là lí do tại sao lượng nước thoát qua khí khổng là chính và với vận tốc lớn.</p>
+    <br><br>
+    <br><br>
+</div>
+
+<script>
+    function openTutorialModal() {
+        document.getElementById("tutorial-modal").style.display = "block";
+        document.getElementById("modal-overlay").style.display = "block";
+    }
+
+    function closeTutorialModal() {
+        document.getElementById("tutorial-modal").style.display = "none";
+        document.getElementById("modal-overlay").style.display = "none";
+    }
+
+    // Hàm mở/đóng modal lý thuyết
+    function openTheoryModal() {
+        document.getElementById("theory-modal").style.display = "block";
+        document.getElementById("theory-overlay").style.display = "block";
+    }
+    function closeTheoryModal() {
+        document.getElementById("theory-modal").style.display = "none";
+        document.getElementById("theory-overlay").style.display = "none";
+    }
+
+    // Hàm reset lại trang
+    function resetPage() {
+            location.reload();
+    }
+</script>
+
+<script type="module" src="./main.js"></script>
+<script src="//cdn.jsdelivr.net/gh/mrdoob/three.js@r151/build/three.js"></script>
+</body>
+</html>
