@@ -90,6 +90,21 @@ infoElement.style.maxWidth = '200px';
 infoElement.style.wordWrap = 'break-word';
 document.body.appendChild(infoElement);
 
+// Lấy tham chiếu đến các nút Toggle Water Path và Toggle Sugar Path
+const toggleWaterPathBtn = document.getElementById('toggleWaterPath');
+const toggleSugarPathBtn = document.getElementById('toggleSugarPath');
+
+// Hàm cập nhật hiển thị các nút Toggle dựa trên scene hiện tại
+function updateToggleButtonVisibility() {
+    if (currentScene === scene5) {
+        toggleWaterPathBtn.style.display = 'inline-block';
+        toggleSugarPathBtn.style.display = 'inline-block';
+    } else {
+        toggleWaterPathBtn.style.display = 'none';
+        toggleSugarPathBtn.style.display = 'none';
+    }
+}
+
 // Hàm cập nhật composer khi chuyển scene
 function updateComposer() {
     composer = new EffectComposer(renderer);
@@ -109,6 +124,8 @@ function updateComposer() {
     // Reset selected objects each time composer is updated
     outlinePass.selectedObjects = []; 
     infoElement.style.display = 'none';
+
+    updateToggleButtonVisibility();
   }
 
 // Khởi tạo geometry và material cho đường thẳng
@@ -227,6 +244,54 @@ loader.load('./assets/stem.glb', function (gltf) {
     let model = gltf.scene;
     model.position.set(0, 0, 0);
     scene3.add(model);
+
+    // Tìm các đối tượng trong scene3 để tương tác
+    const stem = model.getObjectByName('stem');
+    const highLayer = model.getObjectByName('high_layer');
+    const phloem = model.getObjectByName('phloem');
+    const xylem = model.getObjectByName('xylem');
+
+    const interactableObjects = [stem, highLayer, phloem, xylem];
+
+    // Sự kiện di chuyển chuột cho scene3
+    window.addEventListener('mousemove', (event) => {
+        if (currentScene === scene3) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(interactableObjects);
+            if (intersects.length > 0) {
+                const hoverObject = intersects[0].object;
+
+                // Hiển thị thông tin cho đối tượng hover
+                if (highlightedObject !== hoverObject) {
+                    highlightedObject = hoverObject;
+                    outlinePass.selectedObjects = [highlightedObject];
+                    infoElement.style.display = 'block';
+                    infoElement.style.left = `${event.clientX + 10}px`;
+                    infoElement.style.top = `${event.clientY + 10}px`;
+
+                    // Gán tên của từng đối tượng
+                    if (highlightedObject === stem) {
+                        infoElement.innerText = 'Thân cây.';
+                    } else if (highlightedObject === highLayer) {
+                        infoElement.innerText = 'Tầng phân cấp.';
+                    } else if (highlightedObject === phloem) {
+                        infoElement.innerText = 'Mạch rây.';
+                    } else if (highlightedObject === xylem) {
+                        infoElement.innerText = 'Mạch gỗ.';
+                    }
+                    drawLineToInfoElement(highlightedObject);
+                }
+            } else {
+                highlightedObject = null;
+                outlinePass.selectedObjects = [];
+                infoElement.style.display = 'none';
+                if (line) currentScene.remove(line);
+            }
+        }
+    });
 });
 loader.load('./assets/leaf_structure.glb', function (gltf) {
     let model = gltf.scene;
@@ -611,18 +676,22 @@ function animate() {
 document.getElementById('switch-btn1').addEventListener('click', function () {
     currentScene = scene1;
     updateComposer();
+    updateToggleButtonVisibility();
 });
 document.getElementById('switch-btn2').addEventListener('click', function () {
     currentScene = scene2;
     updateComposer();
+    updateToggleButtonVisibility();
 });
 document.getElementById('switch-btn3').addEventListener('click', function () {
     currentScene = scene3;
     updateComposer();
+    updateToggleButtonVisibility();
 });
 document.getElementById('switch-btn4').addEventListener('click', function () {
     currentScene = scene4;
     updateComposer();
+    updateToggleButtonVisibility();
 });
 
 // Bắt đầu render
